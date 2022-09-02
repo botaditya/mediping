@@ -120,38 +120,42 @@ class _NewEntryState extends State<NewEntry> {
               child: StreamBuilder<MedicineType>(
                 stream: _newEntryBloc.selectedMedicineType,
                 builder: (context, snapshot) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      MedicineTypeColumn(
-                          type: MedicineType.Bottle,
-                          name: "Bottle",
-                          iconValue: 0xe900,
-                          isSelected: snapshot.data == MedicineType.Bottle
-                              ? true
-                              : false),
-                      MedicineTypeColumn(
-                          type: MedicineType.Pill,
-                          name: "Pill",
-                          iconValue: 0xe901,
-                          isSelected: snapshot.data == MedicineType.Pill
-                              ? true
-                              : false),
-                      MedicineTypeColumn(
-                          type: MedicineType.Syringe,
-                          name: "Syringe",
-                          iconValue: 0xe902,
-                          isSelected: snapshot.data == MedicineType.Syringe
-                              ? true
-                              : false),
-                      MedicineTypeColumn(
-                          type: MedicineType.Tablet,
-                          name: "Tablet",
-                          iconValue: 0xe903,
-                          isSelected: snapshot.data == MedicineType.Tablet
-                              ? true
-                              : false),
-                    ],
+                  return SizedBox(
+                    height: 160,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        MedicineTypeColumn(
+                            type: MedicineType.Bottle,
+                            name: "Bottle",
+                            iconValue: 0xe900,
+                            isSelected: snapshot.data == MedicineType.Bottle
+                                ? true
+                                : false),
+                        MedicineTypeColumn(
+                            type: MedicineType.Pill,
+                            name: "Pill",
+                            iconValue: 0xe901,
+                            isSelected: snapshot.data == MedicineType.Pill
+                                ? true
+                                : false),
+                        MedicineTypeColumn(
+                            type: MedicineType.Syringe,
+                            name: "Syringe",
+                            iconValue: 0xe902,
+                            isSelected: snapshot.data == MedicineType.Syringe
+                                ? true
+                                : false),
+                        MedicineTypeColumn(
+                            type: MedicineType.Tablet,
+                            name: "Tablet",
+                            iconValue: 0xe903,
+                            isSelected: snapshot.data == MedicineType.Tablet
+                                ? true
+                                : false),
+                      ],
+                    ),
                   );
                 },
               ),
@@ -493,12 +497,14 @@ class _IntervalSelectionState extends State<IntervalSelection> {
   @override
   Widget build(BuildContext context) {
     final NewEntryBloc _newEntryBloc =
-        Provider.of<NewEntryBloc>(context, listen: false);
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Card(
+        final Provider = Provider<>((ref) {
+          return ;
+        });.of<NewEntryBloc>(context, listen: false);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             const Text(
               "Remind me every  ",
@@ -516,11 +522,11 @@ class _IntervalSelectionState extends State<IntervalSelection> {
                       "Select an Interval (hrs)",
                       style: TextStyle(
                           fontSize: 16,
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontWeight: FontWeight.w400),
                     )
                   : null,
-              elevation: 4,
+              elevation: 6,
               value: _selected == 0 ? null : _selected,
               items: _intervals.map((int value) {
                 return DropdownMenuItem<int>(

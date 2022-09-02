@@ -120,7 +120,7 @@ class BottomContainer extends StatelessWidget {
           return ListView.builder(
               shrinkWrap: true,
               itemCount: snapshot.data!.length,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.all(8.0),
               itemBuilder: (context, index) {
                 return MedicineCard(snapshot.data![index]);
